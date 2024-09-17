@@ -32,6 +32,7 @@ function verificarDado(dado) {
 }
 
 
+
 console.log(verificarDado(3));
 console.log(verificarDado('dado'));
 console.log(verificarDado({}));
