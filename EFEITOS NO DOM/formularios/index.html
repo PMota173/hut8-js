@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Formulário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <form name="contato" id="contato">
+        <h1>Meu Formulário</h1>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+        
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">
+
+        <label for="mensagem">Mensagem</label>
+        <textarea name="mensagem" id="mensagem"></textarea>
+    </form>
+
+    <script>
+        const form = document.querySelector('#contato');
+        form.addEventListener('change', function(event) {
+            event.preventDefault(); 
+            const nome = form.querySelector('#nome').value;
+            const email = form.querySelector('#email').value;
+            const mensagem = form.querySelector('#mensagem').value;
+            console.log(nome, email, mensagem);
+        });
+    </script>
+</body>
+</html>
