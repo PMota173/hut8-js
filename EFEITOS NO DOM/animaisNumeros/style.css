@@ -1,0 +1,39 @@
+body {
+    padding: 20px;
+    height: 200vh;
+    background-color: antiquewhite;
+}
+
+.numeros {
+    border-top: 100vh solid #f1f1f1;
+}
+
+.numeros h1 {
+    font-size: 6rem;
+    color: #574e4e;
+    margin-bottom: 10px;
+}
+
+.numeros-grid {
+    display: grid;
+    grid-column: 2 / 4;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .numeros-grid {
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+.numeros-grid h3 {
+    font-size: 3rem;
+    color: #fc6e6e;
+}
+
+.numeros-grid span {
+    font-size: 1rem;
+    color: #333;
+}
