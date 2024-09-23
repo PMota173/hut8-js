@@ -1,0 +1,40 @@
+body {
+    margin: 0px;
+    background: #ccc;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0px;
+}
+
+input {
+    display: grid;
+    grid-gap: 30px;;
+    grid-template-columns: 200px 1fr;
+}
+
+#controles {
+    font: 0.875rem;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.1);
+    background-color: #e0dfdf;
+}
+
+.css {
+    display: flex;
+    font-family: monospace;
+    flex-direction: column;
+    color: #333;
+    margin-top: 40px;
+}
+
+.css span {
+    display: block;
+    margin: 0 0 .5rem 0;
+}
+

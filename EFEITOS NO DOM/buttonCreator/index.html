@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Creator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="controles">
+        <label for="text">Texto</label>
+        <input type="text" name="texto" id="texto">
+
+        <label for="backgroundColor">Cor:</label>
+        <input type="color" name="color" id="color">
+
+        <label for="backgroundColor">Cor de fundo:</label>
+        <input type="color" name="backgroundColor" id="backgroundColor">
+
+        <label for="height">Altura:</label>
+        <input type="range" name="height" id="height" min="0" max="200">
+
+        <label for="width">Largura:</label>
+        <input type="range" name="width" id="width" min="0" max="600">
+
+        <label for="padding">Padding:</label>
+        <input type="range" name="padding" id="padding" min="0" max="100">
+
+        <label for="border">Borda:</label>
+        <input type="text" name="border" id="border">
+
+        <label for="borderRadius">Raio da borda:</label>
+        <input type="range" name="borderRadius" id="borderRadius" min="0" max="20">
+
+        <label for="fontFamily">Família da fonte:</label>
+        <select name="fontFamily" id="fontFamily">
+            <option value="Arial">Arial</option>
+            <option value="Georgia">Georgia</option>
+            <option value="monospace">Monospace</option>
+        </select>
+        <label for="fontSize">Font-size</label>
+        <input type="text" name="fontSize" id="fontSize">
+
+    </form>
+    <section class="resultado">
+        <button class="btn">Clique para copiar</button>
+        <pre><code class="css"></code></pre>
+    </section>
+    
+    <script>
+        const controles = document.getElementById('controles');
+        const css = document.querySelector('.css');
+        const btn = document.querySelector('.btn');
+        
+        controles.addEventListener('change', handleChange);
+
+
+        function handleChange(event) {
+            const name = event.target.name;
+            const value = event.target.value;
+            handleStyle[name](value);
+
+            saveValues(name, value);
+            showCss();
+        }
+
+        const handleStyle = {
+            texto(value) {
+                return btn.innerText = value;
+            },
+            color(value) {
+                return btn.style.color = value;
+            },
+            backgroundColor(value) {
+                return btn.style.backgroundColor = value;
+            },
+            height(value) {
+                return btn.style.height = value + 'px';
+            },
+            width(value) {
+                return btn.style.width = value + 'px';
+            },
+            border(value) {
+                return btn.style.border = value;
+            },
+            borderRadius(value) {
+                return btn.style.borderRadius = value + 'px';
+            },
+            fontFamily(value) {
+                return btn.style.fontFamily = value;
+            },
+            fontSize(value) {
+                return btn.style.fontSize = value + 'rem';
+            },
+            padding(value) {
+                return btn.style.padding = value + 'px';
+            }
+        }
+
+        function saveValues(name, value) {
+            localStorage[name] = value;
+        }
+
+        function showCss() {
+           css.innerHTML = '<span>' + btn.style.cssText.split('; ').join(';</span><span>');
+        }
+
+        (function setValues() {
+            const properties = Object.keys(localStorage);
+            properties.forEach(propertie => {
+                handleStyle[propertie](localStorage[propertie]);
+                controles.elements[propertie].value = localStorage[propertie];
+            });
+            showCss();
+        })();
+
+        function copyCss() {
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = css.innerText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+            showThatCSSWasCopied();
+        }
+
+        function showThatCSSWasCopied() {
+            const div = document.createElement('div');
+            div.innerHTML = 'Copiado!';
+            div.style.cssText = `position: fixed; top: ${event.clientY + 20 }px; left: ${event.clientX + 20}px; padding: 10px; background: #000; color: #fff; opacity: 0.8; border-radius: 5px;`;
+            document.body.appendChild(div);
+
+            setInterval(() => {
+                div.style.opacity = div.style.opacity - 0.02;
+                if (div.style.opacity <= 0) {
+                    div.remove();
+                }
+            }, 0);
+
+
+        }
+
+        btn.addEventListener('click', copyCss);
+
+
+    </script>
+</body>
+</html>
