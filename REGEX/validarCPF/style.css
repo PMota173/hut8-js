@@ -1,0 +1,28 @@
+input.invalido {
+    border-color: red;
+}
+
+input.valido {
+    border-color: green;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+label {
+    margin-top: 10px;
+}
+
+.erro-text {
+    color: red;
+    font-size: 12px;
+    display: none;
+    margin-top: 5px;
+}
+
+.erro-text.ativo {
+    display: block;
+}
